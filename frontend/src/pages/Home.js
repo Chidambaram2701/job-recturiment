@@ -1,116 +1,81 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
 
 const Home = () => {
-  const { user } = useAuth();
-
   return (
-    <div className="bg-white">
-      {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div>
-            <div className="mb-4">
-              <span className="text-blue-600 text-sm font-semibold uppercase tracking-wide">
-                THE INTELLIGENT ATS FOR TEAMS
-              </span>
-            </div>
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">
-              Hire Smarter,{' '}
-              <span className="underline decoration-blue-400 decoration-4">Not Harder</span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-8">
-              Connect top talent with innovative companies. Our AI-powered recruitment engine helps you find the perfect match in seconds.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                to="/jobs"
-                className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 text-lg font-medium text-center transition"
-              >
-                Browse Jobs
-              </Link>
-              {user && (user.role === 'recruiter' || user.role === 'admin') ? (
-                <Link
-                  to="/recruiter/dashboard"
-                  className="bg-white text-blue-600 border-2 border-blue-600 px-8 py-3 rounded-lg hover:bg-blue-50 text-lg font-medium text-center transition"
-                >
-                  Post a Job
-                </Link>
-              ) : (
-                <Link
-                  to="/register"
-                  className="bg-white text-blue-600 border-2 border-blue-600 px-8 py-3 rounded-lg hover:bg-blue-50 text-lg font-medium text-center transition"
-                >
-                  Post a Job
-                </Link>
-              )}
-            </div>
-          </div>
+    <div className="relative overflow-hidden min-h-screen">
+      {/* Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-primary-500/20 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-secondary-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+      </div>
 
-          {/* Right Visual */}
-          <div className="relative">
-            <div className="bg-black text-white px-3 py-1 rounded text-sm mb-2 inline-block">
-              Preview
-            </div>
-            <div className="bg-white rounded-lg shadow-2xl p-4">
-              <div className="bg-gradient-to-br from-green-400 to-blue-500 rounded-lg h-96 flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
-                <div className="bg-white rounded-lg p-6 shadow-xl absolute bottom-4 left-4">
-                  <div className="flex items-center space-x-2">
-                    <svg className="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span className="font-semibold text-gray-800">AI Match Success!</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+      {/* Hero Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
+        <div className="text-center">
+          <h1 className="text-5xl md:text-7xl font-bold font-heading mb-6 tracking-tight animate-fade-in text-white">
+            Find Your Dream Job <br />
+            <span className="text-gradient">in the AI Era</span>
+          </h1>
+          <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-400 mb-10 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+            Connect with top employers and discover opportunities that match your skills.
+            The next generation recruitment platform is here.
+          </p>
+          <div className="flex justify-center gap-4 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+            <Link
+              to="/jobs"
+              className="bg-primary-600 hover:bg-primary-500 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 hover:-translate-y-1"
+            >
+              Browse Jobs
+            </Link>
+            <Link
+              to="/register"
+              className="glass hover:bg-white/20 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:-translate-y-1"
+            >
+              Post a Job
+            </Link>
           </div>
         </div>
       </div>
 
       {/* Features Section */}
-      <div className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Why Choose JobPortal?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Smart Job Matching</h3>
-              <p className="text-gray-600">
-                Our AI-powered system matches your skills and preferences with the perfect job opportunities.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Real-time Tracking</h3>
-              <p className="text-gray-600">
-                Track your application status in real-time and get instant updates on your job applications.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Top Companies</h3>
-              <p className="text-gray-600">
-                Connect with leading companies and discover exciting career opportunities across industries.
-              </p>
-            </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <FeatureCard
+            icon={
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            }
+            title="Smart Matching"
+            description="Our AI-powered algorithm matches your profile with the perfect job opportunities instantly."
+            delay="0.2s"
+          />
+          <FeatureCard
+            icon={
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            }
+            title="Verified Recruiters"
+            description="Connect with verified recruiters from top companies worldwide. No spam, just opportunities."
+            delay="0.4s"
+          />
+          <FeatureCard
+            icon={
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            }
+            title="Career Growth"
+            description="Get insights and analytics to improve your profile and increase your hiring chances."
+            delay="0.6s"
+          />
+        </div>
+      </div>
+
+      {/* Stats Section */}
+      <div className="border-y border-slate-800 bg-slate-900/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <StatItem number="10k+" label="Active Jobs" />
+            <StatItem number="500+" label="Companies" />
+            <StatItem number="50k+" label="Job Seekers" />
+            <StatItem number="98%" label="Satisfaction" />
           </div>
         </div>
       </div>
@@ -118,9 +83,25 @@ const Home = () => {
   );
 };
 
+const FeatureCard = ({ icon, title, description, delay }) => (
+  <div className="glass-card p-8 hover:bg-slate-800/80 group animate-slide-up" style={{ animationDelay: delay }}>
+    <div className="w-12 h-12 bg-slate-700/50 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 text-primary-400">
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {icon}
+      </svg>
+    </div>
+    <h3 className="text-xl font-bold font-heading text-white mb-3">{title}</h3>
+    <p className="text-slate-400 leading-relaxed">
+      {description}
+    </p>
+  </div>
+);
+
+const StatItem = ({ number, label }) => (
+  <div>
+    <div className="text-3xl font-bold text-white mb-1">{number}</div>
+    <div className="text-sm text-slate-400 font-medium uppercase tracking-wider">{label}</div>
+  </div>
+);
+
 export default Home;
-
-
-
-
-
