@@ -1,7 +1,11 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from '../utils/api';
 
 const AuthContext = createContext();
+
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -40,12 +44,11 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('user', JSON.stringify(userData));
       setToken(newToken);
       setUser(userData);
-      return { success: true };
+      // Return user object on success for convenient access
+      return userData;
     } catch (error) {
-      return {
-        success: false,
-        message: error.response?.data?.message || 'Login failed',
-      };
+      // Throw error to be caught by component
+      throw new Error(error.response?.data?.message || 'Login failed');
     }
   };
 
@@ -62,12 +65,9 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('user', JSON.stringify(userData));
       setToken(newToken);
       setUser(userData);
-      return { success: true };
+      return userData;
     } catch (error) {
-      return {
-        success: false,
-        message: error.response?.data?.message || 'Registration failed',
-      };
+      throw new Error(error.response?.data?.message || 'Registration failed');
     }
   };
 

@@ -127,7 +127,7 @@ const JobListings = () => {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen py-8">
+    <div className="bg-gray-50 min-h-screen pt-24 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header with Job Count */}
         <div className="mb-6">
@@ -298,7 +298,7 @@ const JobListings = () => {
               const companyRating = getCompanyRating(job.companyId?.name || '');
               const experience = getExperienceRange(job);
               const isSaved = isJobSaved(job._id);
-              
+
               return (
                 <div key={job._id} className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition relative">
                   {/* Company Logo/Initials - Top Right */}
@@ -382,11 +382,10 @@ const JobListings = () => {
                     <div className="flex items-center gap-3">
                       <button
                         onClick={() => handleSaveJob(job._id)}
-                        className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition ${
-                          isSaved
+                        className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition ${isSaved
                             ? 'bg-blue-50 text-blue-600 border border-blue-200'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300'
-                        }`}
+                          }`}
                       >
                         <svg className="w-4 h-4" fill={isSaved ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />

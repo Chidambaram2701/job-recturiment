@@ -1,22 +1,34 @@
 const express = require('express');
 const User = require('../models/User');
 const multer = require('multer');
-const cloudinary = require('cloudinary').v2;
+// Cloudinary removed
 const { auth } = require('../middleware/auth');
 
 const router = express.Router();
 
-// Configure Cloudinary
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
+// Configure Multer for local storage
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/resumes/');
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    // Keep original extension
+    const ext = file.originalname.split('.').pop();
+    cb(null, file.fieldname + '-' + uniqueSuffix + '.' + ext);
+  }
 });
 
-// Configure Multer for file upload
-const upload = multer({ 
-  storage: multer.memoryStorage(),
-  limits: { fileSize: 5 * 1024 * 1024 } // 5MB limit
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype === 'application/pdf') {
+      cb(null, true);
+    } else {
+      cb(new Error('Only PDF files are allowed!'), false);
+    }
+  }
 });
 
 // Update user profile
@@ -42,24 +54,16 @@ router.post('/upload-resume', auth, upload.single('resume'), async (req, res) =>
       return res.status(400).json({ message: 'No file uploaded' });
     }
 
-    // Upload to Cloudinary
-    const result = await new Promise((resolve, reject) => {
-      const uploadStream = cloudinary.uploader.upload_stream(
-        { resource_type: 'raw', folder: 'resumes' },
-        (error, result) => {
-          if (error) reject(error);
-          else resolve(result);
-        }
-      );
-      uploadStream.end(req.file.buffer);
-    });
+    // Construct local URL
+    // Assuming server runs on the same host/port logic as base API URL
+    const fileUrl = `${req.protocol}://${req.get('host')}/${req.file.path.replace(/\\/g, '/')}`;
 
     // Update user resume URL
     const user = await User.findById(req.user._id);
-    user.resume = result.secure_url;
+    user.resume = fileUrl;
     await user.save();
 
-    res.json({ message: 'Resume uploaded successfully', resume: result.secure_url });
+    res.json({ message: 'Resume uploaded successfully', resume: fileUrl });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -80,6 +84,8 @@ router.get('/', auth, async (req, res) => {
 });
 
 module.exports = router;
+
+
 
 
 
