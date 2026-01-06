@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from '../utils/api';
 import { useAuth } from '../hooks/useAuth';
+import AICompatibilityAnalysis from '../components/AICompatibilityAnalysis';
 
 const JobDetails = () => {
   const { id } = useParams();
@@ -154,28 +155,33 @@ const JobDetails = () => {
             </div>
           )}
 
+          {/* AI Analysis Section */}
+          <AICompatibilityAnalysis job={job} user={user} />
+
           {message && (
             <div
-              className={`mb-4 p-4 rounded ${
-                message.includes('success') ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'
-              }`}
+              className={`mb-4 p-4 rounded ${message.includes('success') ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'
+                }`}
             >
               {message}
             </div>
           )}
 
           {user && user.role === 'jobseeker' && (
-            <button
-              onClick={handleApply}
-              disabled={applying || !user.resume}
-              className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {applying ? 'Applying...' : !user.resume ? 'Upload Resume First' : 'Apply Now'}
-            </button>
+            <div className="mt-8 pt-6 border-t border-gray-100">
+              <button
+                onClick={handleApply}
+                disabled={applying || !user.resume}
+                className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                style={{ backgroundColor: '#2563eb' }}
+              >
+                {applying ? 'Applying...' : !user.resume ? 'Upload Resume First' : 'Apply Now'}
+              </button>
+            </div>
           )}
 
           {!user && (
-            <div className="text-center">
+            <div className="mt-8 pt-6 border-t border-gray-100 text-center">
               <p className="text-gray-600 mb-4">Please login to apply for this job</p>
               <Link
                 to="/login"
