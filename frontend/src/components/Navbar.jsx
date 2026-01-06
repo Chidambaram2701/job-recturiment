@@ -32,7 +32,7 @@ const Navbar = () => {
                 className="w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300"
               />
               <span className="text-2xl font-display font-bold text-gray-900 tracking-tight">
-                Blueprint
+                BluePrint
               </span>
             </Link>
           </div>

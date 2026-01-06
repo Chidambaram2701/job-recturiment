@@ -15,7 +15,7 @@ const Footer = () => {
                 className="w-10 h-10 object-contain rounded-md"
               />
               <span className="text-2xl font-display font-bold text-white tracking-tight">
-                Blueprint
+                BluePrint
               </span>
             </div>
             <p className="text-primary-200 text-sm leading-relaxed max-w-xs">
@@ -70,7 +70,7 @@ const Footer = () => {
 
         <div className="border-t border-white/10 pt-8 text-center">
           <p className="text-primary-300 text-sm">
-            © 2025 Blueprint Inc. All rights reserved.
+            © 2025 BluePrint Inc. All rights reserved.
           </p>
         </div>
       </div>
