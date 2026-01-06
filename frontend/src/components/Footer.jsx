@@ -9,13 +9,13 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
+              <img
+                src="/logo.png"
+                alt="Blueprint Logo"
+                className="w-10 h-10 object-contain rounded-md"
+              />
               <span className="text-2xl font-display font-bold text-white tracking-tight">
-                JobPortal
+                Blueprint
               </span>
             </div>
             <p className="text-primary-200 text-sm leading-relaxed max-w-xs">
@@ -70,7 +70,7 @@ const Footer = () => {
 
         <div className="border-t border-white/10 pt-8 text-center">
           <p className="text-primary-300 text-sm">
-            © 2025 JobPortal Inc. All rights reserved.
+            © 2025 Blueprint Inc. All rights reserved.
           </p>
         </div>
       </div>
