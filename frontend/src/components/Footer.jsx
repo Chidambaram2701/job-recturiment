@@ -15,7 +15,7 @@ const Footer = () => {
                 className="w-10 h-10 object-contain rounded-md"
               />
               <span className="text-2xl font-display font-bold text-white tracking-tight">
-                BluePrint
+                Blue<span style={{ color: '#2563EB' }}>Print</span>
               </span>
             </div>
             <p className="text-primary-200 text-sm leading-relaxed max-w-xs">

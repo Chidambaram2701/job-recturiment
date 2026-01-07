@@ -44,7 +44,7 @@ const Login = () => {
               <img src="/logo.png" alt="BluePrint Logo" className="w-full h-full object-contain" />
             </div>
             <span className="text-2xl font-display font-bold text-gray-900 tracking-tight">
-              BluePrint
+              Blue<span style={{ color: '#2563EB' }}>Print</span>
             </span>
           </div>
 
