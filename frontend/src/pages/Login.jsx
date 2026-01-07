@@ -40,13 +40,11 @@ const Login = () => {
 
         <div className="max-w-md w-full space-y-8 glass p-8 rounded-2xl shadow-2xl border border-white/40 bg-white/80 my-8">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+            <div className="w-12 h-12 bg-transparent rounded-xl flex items-center justify-center mb-0">
+              <img src="/logo.png" alt="BluePrint Logo" className="w-full h-full object-contain" />
             </div>
             <span className="text-2xl font-display font-bold text-gray-900 tracking-tight">
-              Job<span className="text-primary-600">Portal</span>
+              BluePrint
             </span>
           </div>
 
@@ -134,7 +132,7 @@ const Login = () => {
               Your Dream Job <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-300 to-secondary-100">Awaits</span>
             </h2>
             <p className="text-lg text-primary-100 leading-relaxed">
-              Join thousands of professionals who have found their perfect career match with JobPortal.
+              Join thousands of professionals who have found their perfect career match with BluePrint.
             </p>
           </div>
 
