@@ -124,7 +124,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl font-display font-bold text-gray-900 mb-4">
-              Why Choose JobPortal?
+              Why Choose BluePrint?
             </h2>
             <p className="text-gray-600 text-lg">
               Simple, reliable, and effective hiring solutions for modern teams.
